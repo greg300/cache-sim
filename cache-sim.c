@@ -26,7 +26,7 @@
 
 int isPowerOfTwo(int n);
 int getAssociativity(char *cacheAssociativity);
-void printCounters(int totalInstructions, int memoryReads, int memoryWrites, int l1CacheHits, int l1CacheMisses, float l1MissRate, int l2CacheHits, int l2CacheMisses, float l2MissRate);
+void printCounters(int totalInstructions, int memoryReads, int memoryWrites, int l1CacheHits, int l1CacheMisses, float l1MissRate, int l2CacheHits, int l2CacheMisses, float l2MissRate, float overallMissRate);
 int logBase2(int n);
 unsigned long long int getTag(unsigned long long int address, int setBits, int tagBits, int blockOffset);
 unsigned long int getSet(unsigned long long int address, int setBits, int tagBits, int blockOffset);
@@ -553,9 +553,11 @@ int main(int argc, char *argv[])
 
     float l1NoPrefectMissRate = (float) l1NoPrefetchCacheMisses / totalInstructions;
     float l2NoPrefectMissRate = (float) l2NoPrefetchCacheMisses / l1NoPrefetchCacheMisses;
+    float overallNoPrefetchMissRate = (float) l2NoPrefetchCacheMisses / totalInstructions;
 
     float l1WithPrefectMissRate = (float) l1WithPrefetchCacheMisses / totalInstructions;
     float l2WithPrefectMissRate = (float) l2WithPrefetchCacheMisses / l1WithPrefetchCacheMisses;
+    float overallWithPrefetchMissRate = (float) l2WithPrefetchCacheMisses / totalInstructions;
 
     /* Print the results */
     printf("-----\nNo Prefetch\n-----\n");
@@ -567,7 +569,8 @@ int main(int argc, char *argv[])
                   l1NoPrefectMissRate,
                   l2NoPrefetchCacheHits,
                   l2NoPrefetchCacheMisses,
-                  l2NoPrefectMissRate);
+                  l2NoPrefectMissRate,
+                  overallNoPrefetchMissRate);
 
     printf("-----\nWith Prefetch\n-----\n");
     printCounters(totalInstructions,
@@ -578,7 +581,8 @@ int main(int argc, char *argv[])
                   l1WithPrefectMissRate,
                   l2WithPrefetchCacheHits,
                   l2WithPrefetchCacheMisses,
-                  l2WithPrefectMissRate);
+                  l2WithPrefectMissRate,
+                  overallWithPrefetchMissRate);
 
     /* printf("Count: %lu\n", count); */
 
@@ -694,7 +698,8 @@ void printCounters(int totalInstructions,
                    float l1MissRate,
                    int l2CacheHits,
                    int l2CacheMisses,
-                   float l2MissRate)
+                   float l2MissRate,
+                   float overallMissRate)
 {
     printf("Total instructions: %d\n", totalInstructions);
     printf("Memory reads: %d\n", memoryReads);
@@ -705,7 +710,7 @@ void printCounters(int totalInstructions,
     printf("L2 cache hits: %d\n", l2CacheHits);
     printf("L2 cache misses: %d\n", l2CacheMisses);
     printf("L2 cache miss rate: %.3f\n", l2MissRate);
-    
+    printf("Overall cache miss rate: %.3f\n", overallMissRate);
 }
 
 
