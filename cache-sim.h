@@ -7,7 +7,10 @@
  *
  *        Version:  1.1
  *        Created:  04/22/2019 00:02:20
- *       Revision:  12/20/2021
+ *       Revision:  1.1 – 12/20/2021
+ *                  Version 1.1 expands the basic cache simulation infrastructure
+ *                  developed in version 1.0 to include support for an L2 cache,
+ *                  along with various other improvements and cleanup.
  *       Compiler:  gcc
  *
  *         Author:  Gregory Giovannini (Student), gregory.giovannini@rutgers.edu
