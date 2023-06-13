@@ -1,11 +1,7 @@
-# ECE563_Final_Project
-Computer Architecture (ECE 332:563) Final Project.
+# Cache Simulator
+## ECE 563 - Computer Architecture
 
----
-
-## Overview
-
-A L1-L2-DRAM memory hierarchy system remains a frequently-used model for modern CPUs. In this investigation, a simple L1-L2 cache simulator is developed in the C programming language.  C was selected for its low-level access to memory and fast runtime.
+A L1-L2-DRAM memory hierarchy system remains a frequently-used model for modern CPUs. In this investigation, a simple L1-L2 cache simulator is developed in the C programming language. C was selected for its low-level access to memory and fast runtime.
 
 The goal of this project is not to simulate memory itself, but rather, to simulate the behavior of the cache hierarchy to demonstrate how various configurations of cache size, associativity, and block size, along with prefetching adjacent memory addresses, impact the performance of a multilevel cache among different benchmarks.
 
@@ -36,74 +32,74 @@ The usage for running the cache simulator is enumerated below, along with all op
 ## Commands
 1.	Build the cache simulator:
 
-make
+`make`
 
 2.	Create a memory access trace file from a compiled binary (requires Valgrind):
 
-python mem_trace.py <prog_name>
+`python mem_trace.py <prog_name>`
 
 (Note: may need to use “python3” if “python” references Python 2, e.g. on some macOS installations.)
 
 3.	Run L1 cache evaluation on benchmark “test2.txt”:
 
-./bin/cache-sim 32 direct lru 4 1024 assoc lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc lru 8 tests/test2.txt`
 
-./bin/cache-sim 64 direct lru 4 1024 assoc lru 8 tests/test2.txt
+`./bin/cache-sim 64 direct lru 4 1024 assoc lru 8 tests/test2.txt`
 
-./bin/cache-sim 128 direct lru 4 1024 assoc lru 8 tests/test2.txt
+`./bin/cache-sim 128 direct lru 4 1024 assoc lru 8 tests/test2.txt`
 
-./bin/cache-sim 256 direct lru 4 1024 assoc lru 8 tests/test2.txt
+`./bin/cache-sim 256 direct lru 4 1024 assoc lru 8 tests/test2.txt`
 
-./bin/cache-sim 512 direct lru 4 1024 assoc lru 8 tests/test2.txt
+`./bin/cache-sim 512 direct lru 4 1024 assoc lru 8 tests/test2.txt`
 
 4.	Run L1 cache evaluation on benchmark “test3.txt”:
 
-./bin/cache-sim 32 direct lru 4 1024 assoc lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc lru 8 tests/test3.txt`
 
-./bin/cache-sim 64 direct lru 4 1024 assoc lru 8 tests/test3.txt
+`./bin/cache-sim 64 direct lru 4 1024 assoc lru 8 tests/test3.txt`
 
-./bin/cache-sim 128 direct lru 4 1024 assoc lru 8 tests/test3.txt
+`./bin/cache-sim 128 direct lru 4 1024 assoc lru 8 tests/test3.txt`
 
-./bin/cache-sim 256 direct lru 4 1024 assoc lru 8 tests/test3.txt
+`./bin/cache-sim 256 direct lru 4 1024 assoc lru 8 tests/test3.txt`
 
-./bin/cache-sim 512 direct lru 4 1024 assoc lru 8 tests/test3.txt
+`./bin/cache-sim 512 direct lru 4 1024 assoc lru 8 tests/test3.txt`
 
 5.	Run L2 cache evaluation on benchmark “test2.txt”:
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:1 lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:1 lru 8 tests/test2.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:2 lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:2 lru 8 tests/test2.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:4 lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:4 lru 8 tests/test2.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:8 lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:8 lru 8 tests/test2.txt`
 
 (For the remaining 12 commands, vary the size [1024] between [2048], [4096], and [8192].)
 
 6.	Run L2 cache evaluation on benchmark “test3.txt”:
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:1 lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:1 lru 8 tests/test3.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:2 lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:2 lru 8 tests/test3.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:4 lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:4 lru 8 tests/test3.txt`
 
-./bin/cache-sim 32 direct lru 4 1024 assoc:8 lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 1024 assoc:8 lru 8 tests/test3.txt`
 
 (For the remaining 12 commands, vary the size [1024] between [2048], [4096], and [8192].)
 
 7.	Run overall cache evaluation on all benchmarks:
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test1.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test1.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test2.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test2.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test3.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test3.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test4.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/test4.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/matrix_mult_test.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/matrix_mult_test.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/pi_test.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/pi_test.txt`
 
-./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/looping_test.txt
+`./bin/cache-sim 32 direct lru 4 4096 assoc:4 lru 8 tests/looping_test.txt`
